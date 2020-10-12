@@ -9,3 +9,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Book.create(title: 'Dune', author: 'Frank Herbert', category: 'fiction', percentage: 5)
+Book.create(title: 'The Count of Monte Cristo', author: 'Alexandre Dumas', category: 'fiction', percentage: 8)
+Book.create(title: 'A Game of Thrones', author: 'George R.R. Martin', category: 'fiction', percentage: 12)
+Book.create(title: 'To Kill a Mockingbird', author: 'Harper Lee', category: 'fiction', percentage: 20)

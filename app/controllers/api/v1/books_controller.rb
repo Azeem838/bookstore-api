@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Api::V1::BooksController < ApplicationController
-  before_action :set_book, only: [:show, :update, :destroy]
+  before_action :set_book, only: %i[show update destroy]
 
   # GET /books
   def index
@@ -15,10 +17,11 @@ class Api::V1::BooksController < ApplicationController
 
   # POST /books
   def create
+    byebug
     @book = Book.new(book_params)
 
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: @book, status: :created, location: api_v1_books_path(@book)
     else
       render json: @book.errors, status: :unprocessable_entity
     end
@@ -39,13 +42,14 @@ class Api::V1::BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.require(:book).permit(:title, :author, :category, :percentage)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def book_params
+    params.permit(:title, :category)
+  end
 end
