@@ -17,7 +17,6 @@ class Api::V1::BooksController < ApplicationController
 
   # POST /books
   def create
-    byebug
     @book = Book.new(book_params)
 
     if @book.save
@@ -50,6 +49,6 @@ class Api::V1::BooksController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def book_params
-    params.permit(:title, :category)
+    params.require(:book).permit(:title, :category)
   end
 end
